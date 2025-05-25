@@ -1,0 +1,33 @@
+replicaCount: 1
+image:
+  repository: asia-northeast3-docker.pkg.dev/engaged-proxy-460415-d1/highfive-registry/monitoring
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  port: 8085
+  type: NodePort
+
+resources:
+  requests:
+    cpu: "300m"
+    memory: "512Mi"
+  limits:
+    cpu: "700m"
+    memory: "1Gi"
+
+livenessProbe:
+  httpGet:
+    path: /actuator/health
+    port: http
+  initialDelaySeconds: 100
+  periodSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /actuator/health
+    port: http
+  initialDelaySeconds: 100
+  periodSeconds: 5
+  failureThreshold: 3

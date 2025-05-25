@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "user-service-chart.fullname" . }}
+  labels:
+    {{- include "user-service-chart.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "user-service-chart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      name: user-service
+      labels:
+        {{- include "user-service-chart.labels" . | nindent 8 }}
+    spec:
+      initContainers:
+        - name: wait-for-api-gateway
+          image: busybox:1.36
+          command: [ 'sh', '-c', 'until wget --spider http://api-gateway:8080/actuator/health; do echo waiting for api-gateway; sleep 5; done' ]
+        - name: wait-for-mongodb
+          image: busybox
+          command: [ 'sh', '-c', 'until nc -z mongodb 27017; do echo waiting for mongodb; sleep 5; done' ]
+        - name: wait-for-kafka
+          image: busybox
+          command: [ 'sh', '-c', 'until nc -z kafka 9092; do echo waiting for kafka; sleep 5; done' ]
+      containers:
+        - name: user-service
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: {{ include "user-service-chart.fullname" . }}-configmap
+            - secretRef:
+                name: {{ include "user-service-chart.fullname" . }}-secret
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+      restartPolicy: Always

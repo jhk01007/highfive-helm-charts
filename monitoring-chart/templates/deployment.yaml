@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "monitoring-chart.fullname" . }}
+  labels:
+    {{- include "monitoring-chart.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "monitoring-chart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      name: monitoring
+      labels:
+        {{- include "monitoring-chart.labels" . | nindent 8 }}
+    spec:
+      initContainers:
+        - name: wait-for-api-gateway
+          image: busybox:1.36
+          command: [ 'sh', '-c', 'until wget --spider http://api-gateway:8080/actuator/health; do echo waiting for api-gateway; sleep 5; done' ]
+      containers:
+        - name: monitoring
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+      restartPolicy: Always

@@ -1,0 +1,22 @@
+replicaCount: 1
+image:
+  repository: mongo
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  port: 27017
+
+resources:
+  requests:
+    cpu: "300m"
+    memory: "512Mi"
+  limits:
+    cpu: "1"
+    memory: "1Gi"
+
+persistence:
+  storageClass: standard
+  accessModes:
+    - ReadWriteOnce
+  size: 20Gi

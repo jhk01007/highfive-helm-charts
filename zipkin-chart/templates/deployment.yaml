@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "zipkin-chart.fullname" . }}
+  labels:
+    {{- include "zipkin-chart.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "zipkin-chart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      name: zipkin
+      labels:
+        {{- include "zipkin-chart.labels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: zipkin
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      restartPolicy: Always

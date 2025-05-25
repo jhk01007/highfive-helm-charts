@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "data-collector-chart.fullname" . }}
+  labels:
+    {{- include "data-collector-chart.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "data-collector-chart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "data-collector-chart.labels" . | nindent 8 }}
+    spec:
+      initContainers:
+        - name: wait-for-api-gateway
+          image: busybox:1.36
+          command: [ 'sh', '-c', 'until wget --spider http://api-gateway:8080/actuator/health; do echo waiting for api-gateway; sleep 5; done' ]
+        - name: wait-for-mongodb
+          image: busybox
+          command: [ 'sh', '-c', 'until nc -z mongodb 27017; do echo waiting for mongodb; sleep 5; done' ]
+        - name: wait-for-redis
+          image: busybox
+          command: [ 'sh', '-c', 'until nc -z mysql 3306; do echo waiting for mysql; sleep 5; done' ]
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: {{ include "data-collector-chart.fullname" . }}-configmap
+            - secretRef:
+                name: {{ include "data-collector-chart.fullname" . }}-secret
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      restartPolicy: Always

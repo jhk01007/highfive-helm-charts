@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "board-service-chart.fullname" . }}
+spec:
+  selector:
+    {{- include "board-service-chart.selectorLabels" . | nindent 4 }}
+  ports:
+    - protocol: TCP
+      name: http
+      port: {{ .Values.service.port }}
+      targetPort: http

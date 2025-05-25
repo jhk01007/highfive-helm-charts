@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kafka-configmap
+data:
+  KAFKA_BROKER_ID: {{ .Values.kafka.config.KAFKA_BROKER_ID | quote }}
+  KAFKA_PORT: {{ .Values.kafka.config.KAFKA_PORT | quote }}
+  KAFKA_ZOOKEEPER_CONNECT: {{ .Values.kafka.config.KAFKA_ZOOKEEPER_CONNECT | quote }}
+  KAFKA_ADVERTISED_LISTENERS: {{ .Values.kafka.config.KAFKA_ADVERTISED_LISTENERS | quote }}
+  KAFKA_LISTENERS: {{ .Values.kafka.config.KAFKA_LISTENERS | quote }}
+  KAFKA_AUTO_CREATE_TOPICS_ENABLE: {{ .Values.kafka.config.KAFKA_AUTO_CREATE_TOPICS_ENABLE | quote }}

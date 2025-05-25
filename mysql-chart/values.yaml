@@ -1,0 +1,22 @@
+replicaCount: 1
+image:
+  repository: mysql
+  tag: 8.0
+  pullPolicy: IfNotPresent
+
+service:
+  port: 3306
+
+resources:
+  requests:
+    cpu: "200m"
+    memory: "256Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+
+persistence:
+  storageClass: standard
+  accessModes:
+    - ReadWriteOnce
+  size: 20Gi

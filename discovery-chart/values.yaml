@@ -1,0 +1,31 @@
+replicaCount: 1
+image:
+  repository: asia-northeast3-docker.pkg.dev/engaged-proxy-460415-d1/highfive-registry/discovery
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  port: 8761
+resources:
+  requests:
+    cpu: "200m"
+    memory: "512Mi"
+  limits:
+    cpu: "500m"
+    memory: "1Gi"
+
+livenessProbe:
+  httpGet:
+    path: /actuator/health
+    port: http
+  initialDelaySeconds: 100
+  periodSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /actuator/health
+    port: http
+  initialDelaySeconds: 100
+  periodSeconds: 5
+  failureThreshold: 3

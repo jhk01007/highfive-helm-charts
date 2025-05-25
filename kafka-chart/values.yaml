@@ -1,0 +1,29 @@
+zookeeper:
+  image: bitnami/zookeeper:latest
+  port: 2181
+  resources:
+    requests:
+      cpu: "200m"
+      memory: "512Mi"
+    limits:
+      cpu: "300m"
+      memory: "1Gi"
+  allowAnonymousLogin: "yes"
+
+kafka:
+  image: wurstmeister/kafka:2.13-2.7.0
+  port: 9092
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "1Gi"
+    limits:
+      cpu: "2"
+      memory: "2Gi"
+  config:
+    KAFKA_BROKER_ID: "1"
+    KAFKA_PORT: "9092"
+    KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+    KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://kafka:9092"
+    KAFKA_LISTENERS: "PLAINTEXT://0.0.0.0:9092"
+    KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
