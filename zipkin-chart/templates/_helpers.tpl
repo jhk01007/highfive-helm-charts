@@ -1,5 +1,5 @@
 {{- define "zipkin-chart.fullname" -}}
-{{ .Release.Name }}-zipkin
+{{ .Release.Name }}
 {{- end }}
 
 {{- define "zipkin-chart.labels" -}}

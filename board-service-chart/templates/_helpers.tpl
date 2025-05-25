@@ -1,5 +1,5 @@
 {{- define "board-service-chart.fullname" -}}
-{{ .Release.Name }}-board-service
+{{ .Release.Name }}
 {{- end }}
 
 {{- define "board-service-chart.labels" -}}

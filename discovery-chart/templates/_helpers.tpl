@@ -1,5 +1,5 @@
 {{- define "discovery-service-chart.fullname" -}}
-{{ .Release.Name }}-discovery
+{{ .Release.Name }}
 {{- end }}
 
 {{- define "discovery-service-chart.labels" -}}

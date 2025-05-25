@@ -1,3 +1,3 @@
 {{- define "mysql-chart.fullname" -}}
-{{ .Release.Name }}-mysql
+{{ .Release.Name }}
 {{- end }}

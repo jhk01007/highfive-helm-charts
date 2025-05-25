@@ -1,5 +1,5 @@
 {{- define "monitoring-chart.fullname" -}}
-{{ .Release.Name }}-monitoring
+{{ .Release.Name }}
 {{- end }}
 
 {{- define "monitoring-chart.labels" -}}

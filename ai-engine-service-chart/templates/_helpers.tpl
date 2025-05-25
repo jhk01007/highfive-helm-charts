@@ -1,5 +1,5 @@
 {{- define "ai-engine-service-chart.fullname" -}}
-{{ .Release.Name }}-ai-engine-service
+{{ .Release.Name }}
 {{- end }}
 
 {{- define "ai-engine-service-chart.labels" -}}

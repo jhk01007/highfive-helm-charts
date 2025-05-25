@@ -1,5 +1,5 @@
 {{- define "data-collector-chart.fullname" -}}
-{{ .Release.Name }}-data-collector
+{{ .Release.Name }}
 {{- end }}
 
 

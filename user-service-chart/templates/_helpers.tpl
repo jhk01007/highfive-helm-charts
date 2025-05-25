@@ -1,5 +1,5 @@
 {{- define "user-service-chart.fullname" -}}
-{{ .Release.Name }}-user-service
+{{ .Release.Name }}
 {{- end }}
 
 {{- define "user-service-chart.labels" -}}

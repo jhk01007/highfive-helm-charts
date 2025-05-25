@@ -1,5 +1,5 @@
 {{- define "redis-chart.fullname" -}}
-{{ .Release.Name }}-redis
+{{ .Release.Name }}
 {{- end }}
 
 {{- define "redis-chart.labels" -}}

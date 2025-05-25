@@ -1,5 +1,5 @@
 {{- define "welfare-service-chart.fullname" -}}
-{{ .Release.Name }}-welfare-service
+{{ .Release.Name }}
 {{- end }}
 
 {{- define "welfare-service-chart.labels" -}}

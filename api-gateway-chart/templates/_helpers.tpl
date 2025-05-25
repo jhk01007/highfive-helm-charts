@@ -1,5 +1,5 @@
 {{- define "api-gateway-chart.fullname" -}}
-{{ .Release.Name }}-api-gateway
+{{ .Release.Name }}
 {{- end }}
 
 {{- define "api-gateway-chart.labels" -}}
