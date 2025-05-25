@@ -36,7 +36,7 @@ spec:
             - configMapRef:
                 name: {{ include "data-collector-chart.fullname" . }}-configmap
             - secretRef:
-                name: {{ include "data-collector-chart.fullname" . }}-secret
+                name: data-collector-secret
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:

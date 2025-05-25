@@ -28,7 +28,7 @@ spec:
               protocol: TCP
           envFrom:
             - secretRef:
-                name: {{ include "api-gateway-chart.fullname" . }}-secret
+                name: api-gateway-secret
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:

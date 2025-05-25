@@ -22,7 +22,7 @@ spec:
               name: mongodb
           envFrom:
             - secretRef:
-                name: {{ include "mongo-chart.fullname" . }}-secret
+                name: mongo-secret
           volumeMounts:
             - name: mongodb-persistent-storage
               mountPath: /data/db

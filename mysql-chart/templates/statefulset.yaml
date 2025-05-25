@@ -22,7 +22,7 @@ spec:
               name: mysql
           envFrom:
             - secretRef:
-                name: {{ include "mysql-chart.fullname" . }}-secret
+                name: mysql-secret
           volumeMounts:
             - name: mysql-persistent-storage
               mountPath: /var/lib/mysql

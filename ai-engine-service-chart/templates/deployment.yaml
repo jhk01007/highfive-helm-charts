@@ -28,7 +28,7 @@ spec:
               protocol: TCP
           envFrom:
             - secretRef:
-                name: {{ include "ai-engine-service-chart.fullname" . }}-secret
+                name: ai-engine-service-secret
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:

@@ -37,7 +37,7 @@ spec:
               protocol: TCP
           envFrom:
             - secretRef:
-                name: {{ include "board-service-chart.fullname" . }}-secret
+                name: board-service-secret
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:

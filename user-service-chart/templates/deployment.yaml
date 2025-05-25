@@ -39,7 +39,7 @@ spec:
             - configMapRef:
                 name: {{ include "user-service-chart.fullname" . }}-configmap
             - secretRef:
-                name: {{ include "user-service-chart.fullname" . }}-secret
+                name: user-service-secret
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
