@@ -11,12 +11,12 @@
 {{- end }}
 {{- end }}
 
-{{- define "discovery-service-chart.labels" -}}
+{{- define "discovery-chart.labels" -}}
 app.kubernetes.io/name: discovery
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
-{{- define "discovery-service-chart.selectorLabels" -}}
+{{- define "discovery-chart.selectorLabels" -}}
 app.kubernetes.io/name: discovery
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}

@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "discovery-service-chart.fullname" . }}
+  name: {{ include "discovery-chart.fullname" . }}
   labels:
-    {{- include "discovery-service-chart.labels" . | nindent 4 }}
+    {{- include "discovery-chart.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "discovery-service-chart.selectorLabels" . | nindent 6 }}
+      {{- include "discovery-chart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       name: discovery
       labels:
-        {{- include "discovery-service-chart.labels" . | nindent 8 }}
+        {{- include "discovery-chart.labels" . | nindent 8 }}
     spec:
       containers:
         - name: discovery
