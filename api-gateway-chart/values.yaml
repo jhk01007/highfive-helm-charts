@@ -9,6 +9,11 @@ fullnameOverride: "api-gateway"
 service:
   port: 8080
 
+dependency:
+  discovery:
+    service_name: "discovery"
+    port: 8761
+
 resources:
   requests:
     cpu: "300m"

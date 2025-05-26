@@ -17,7 +17,7 @@ spec:
       initContainers:
         - name: wait-for-discovery
           image: busybox:1.36
-          command: ['sh', '-c', 'until wget --spider http://discovery:8761/actuator/health; do echo waiting for discovery; sleep 5; done']
+          command: ['sh', '-c', 'until wget --spider http://{{ .Values.dependency.discovery.service_name }}:{{ .Values.dependency.discovery.port }}/actuator/health; do echo waiting for discovery; sleep 5; done']
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

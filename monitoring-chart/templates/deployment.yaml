@@ -18,7 +18,7 @@ spec:
       initContainers:
         - name: wait-for-api-gateway
           image: busybox:1.36
-          command: [ 'sh', '-c', 'until wget --spider http://api-gateway:8080/actuator/health; do echo waiting for api-gateway; sleep 5; done' ]
+          command: [ 'sh', '-c', 'until wget --spider http://{{ .Values.dependency.api_gateway.service_name }}:{{ .Values.dependency.api_gateway.port }}/actuator/health; do echo waiting for api-gateway; sleep 5; done' ]
       containers:
         - name: monitoring
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

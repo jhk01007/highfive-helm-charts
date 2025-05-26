@@ -6,6 +6,11 @@ image:
 
 fullnameOverride: "monitoring"
 
+dependency:
+  api_gateway:
+    service_name: "api-gateway"
+    port: 8080
+
 service:
   port: 8085
   type: NodePort

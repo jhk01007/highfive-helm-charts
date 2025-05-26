@@ -9,6 +9,20 @@ fullnameOverride: "board-service"
 service:
   port: 8082
 
+dependency:
+  api_gateway:
+    service_name: "api-gateway"
+    port: 8080
+  user_service:
+    service_name: "user-service"
+    port: 8081
+  mongo:
+    service_name: "mongo"
+    port: 27017
+  redis:
+    service_name: "redis"
+    port: 6379
+
 resources:
   requests:
     cpu: "200m"
