@@ -33,7 +33,7 @@ livenessProbe:
   httpGet:
     path: /actuator/health
     port: http
-  initialDelaySeconds: 100
+  initialDelaySeconds: 150
   periodSeconds: 5
   failureThreshold: 3
 
@@ -41,7 +41,7 @@ readinessProbe:
   httpGet:
     path: /actuator/health
     port: http
-  initialDelaySeconds: 100
+  initialDelaySeconds: 150
   periodSeconds: 5
   failureThreshold: 3
 
