@@ -4,6 +4,8 @@ image:
   tag: "latest"
   pullPolicy: IfNotPresent
 
+fullnameOverride: "api-gateway"
+
 service:
   port: 8080
 

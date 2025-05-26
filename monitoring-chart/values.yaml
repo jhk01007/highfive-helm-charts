@@ -4,6 +4,8 @@ image:
   tag: latest
   pullPolicy: IfNotPresent
 
+fullnameOverride: "monitoring"
+
 service:
   port: 8085
   type: NodePort

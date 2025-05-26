@@ -4,6 +4,8 @@ image:
   tag: latest
   pullPolicy: IfNotPresent
 
+fullnameOverride: "user-service"
+
 service:
   port: 8081
 

@@ -1,3 +1,5 @@
+fullnameOverride: "kafka-zookeeper"
+
 zookeeper:
   image: bitnami/zookeeper:latest
   port: 2181

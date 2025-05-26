@@ -5,6 +5,8 @@ image:
   tag: "latest"
   pullPolicy: IfNotPresent
 
+fullnameOverride: "data-collector"
+
 service:
   port: 8086
 

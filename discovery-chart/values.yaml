@@ -4,6 +4,8 @@ image:
   tag: latest
   pullPolicy: IfNotPresent
 
+fullnameOverride: discovery
+
 service:
   port: 8761
 resources:

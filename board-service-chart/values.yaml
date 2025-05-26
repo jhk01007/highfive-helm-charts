@@ -4,6 +4,8 @@ image:
   tag: "latest"
   pullPolicy: IfNotPresent
 
+fullnameOverride: "board-service"
+
 service:
   port: 8082
 

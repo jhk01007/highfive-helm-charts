@@ -4,6 +4,8 @@ image:
   tag: latest
   pullPolicy: IfNotPresent
 
+fullnameOverride: "mongo"
+
 service:
   port: 27017
 

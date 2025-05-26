@@ -4,6 +4,8 @@ image:
   tag: 7-alpine
   pullPolicy: IfNotPresent
 
+fullnameOverride: "redis"
+
 service:
   port: 6379
   targetPort: 6379

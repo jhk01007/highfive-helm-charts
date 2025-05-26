@@ -4,6 +4,8 @@ image:
   tag: 2.23
   pullPolicy: IfNotPresent
 
+fullnameOverride: "zipkin"
+
 service:
   port: 9411
   targetPort: 9411

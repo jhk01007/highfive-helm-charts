@@ -4,6 +4,8 @@ image:
   tag: 8.0
   pullPolicy: IfNotPresent
 
+fullnameOverride: "mysql"
+
 service:
   port: 3306
 
