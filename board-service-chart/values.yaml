@@ -16,8 +16,8 @@ dependency:
   user_service:
     service_name: "user-service"
     port: 8081
-  mongo:
-    service_name: "mongo"
+  mongodb:
+    service_name: "mongodb"
     port: 27017
   redis:
     service_name: "redis"

@@ -22,7 +22,7 @@ spec:
               name: mongodb
           envFrom:
             - secretRef:
-                name: mongo-secret
+                name: mongodb-secret
           volumeMounts:
             - name: mongodb-persistent-storage
               mountPath: /data/db

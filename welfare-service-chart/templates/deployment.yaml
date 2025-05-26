@@ -21,7 +21,7 @@ spec:
           command: [ 'sh', '-c', 'until wget --spider http://{{ .Values.dependency.api_gateway.service_name }}:{{ .Values.dependency.api_gateway.port }}/actuator/health; do echo waiting for api-gateway; sleep 5; done' ]
         - name: wait-for-mongodb
           image: busybox
-          command: [ 'sh', '-c', 'until nc -z {{ .Values.dependency.mongo.service_name }} {{ .Values.dependency.mongo.port }}; do echo waiting for mongodb; sleep 5; done' ]
+          command: [ 'sh', '-c', 'until nc -z {{ .Values.dependency.mongodb.service_name }} {{ .Values.dependency.mongodb.port }}; do echo waiting for mongodb; sleep 5; done' ]
         - name: wait-for-redis
           image: busybox
           command: [ 'sh', '-c', 'until nc -z {{ .Values.dependency.redis.service_name }} {{ .Values.dependency.redis.port }}; do echo waiting for redis; sleep 5; done' ]

@@ -13,8 +13,8 @@ dependency:
   api_gateway:
     service_name: "api-gateway"
     port: 8080
-  mongo:
-    service_name: "mongo"
+  mongodb:
+    service_name: "mongodb"
     port: 27017
   kafka:
     service_name: "kafka"
