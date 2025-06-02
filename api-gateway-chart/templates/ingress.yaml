@@ -3,7 +3,16 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ include "api-gateway-chart.fullname" . }}
+  annotations:
+    {{- range $key, $value := .Values.ingress.annotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
 spec:
+  tls:
+    - hosts:
+        {{- range .Values.ingress.hosts }}
+        - {{ .host }}
+        {{- end}}
   rules:
     {{- range .Values.ingress.hosts }}
     - http:
